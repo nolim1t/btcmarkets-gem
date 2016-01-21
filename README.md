@@ -41,6 +41,20 @@ puts b.market_BTC_AUD_orderbook # Get orderbook
 puts b.account_balance # Get account balance
 ```
 
+#### Get Account Balance if not 0
+```ruby
+require 'nl-btcmarkets'
+require 'json'
+b = BTCMarkets.new
+JSON.parse(b.account_balance).each{|bal|
+  if bal['balance'] > 0 then
+    if bal['currency'] == 'AUD' or bal['currency'] == 'USD'
+      puts "Balance: #{bal['currency']}$#{(bal['balance'].to_f / 100000000).to_s} / Trading Balance: #{bal['currency']}$#{(bal['pendingFunds'].to_f / 100000000).to_s}"
+    end
+  end
+}
+```
+
 ## Disclaimer
 * This is an early stage pre-release. Use at your own risk.
 * Pull Requests are appreciated
