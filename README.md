@@ -10,6 +10,19 @@ gem build nl-btcmarkets.gemspec
 gem install nl-btcmarkets-0.0.1.gem
 ```
 
+## installing
+```bash
+gem install nl-btcmarkets
+```
+
+### Or add the following to your Gemfile
+```text
+source 'https://rubygems.org'
+
+gem 'httparty'
+gem 'nl-btcmarkets'
+```
+
 ## Usage
 ### Sample Query of the order history
 ```ruby
