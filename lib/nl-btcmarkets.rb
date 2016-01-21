@@ -27,20 +27,20 @@ class BTCMarkets
     end
     @nonce = (Time.now.to_f * 1000).to_i.to_s # generate a new one each time
     if @parameters != ''
-      to_sign = '/' + convert_undercores_to_slashes + "\n" + @nonce + "\n" + @parameters + "\n"
+      to_sign = '/' + convert_undercores_to_slashes + "\n" + @nonce + "\n" + @parameters.to_s + "\n"
     else
       to_sign = '/' + convert_undercores_to_slashes + "\n" + @nonce + "\n"
     end
     ssl_sign = OpenSSL::HMAC.digest('sha512', @apisecret, to_sign)
     ssl_sign_encoded = Base64.encode64(ssl_sign).to_s.gsub("\n",'')
 		if method_type == "get" then
-    	self.class.get('/' + convert_undercores_to_slashes, :headers => {'Content-Type' => 'application/json', 'apikey' => @apikey , 'signature' => ssl_sign_encoded, 'timestamp' => @nonce}).to_json
+    	self.class.get('/' + convert_undercores_to_slashes, :headers => {'Accept-Charset' => 'UTF-8', 'Accept' => 'application/json','Content-Type' => 'application/json', 'apikey' => @apikey , 'signature' => ssl_sign_encoded, 'timestamp' => @nonce}).to_json
 		else
 			if method_type == "post" and @parameters != '' then
-    		self.class.post('/' + convert_undercores_to_slashes, :body => @parameters, :headers => {'Content-Type' => 'application/json', 'apikey' => @apikey , 'signature' => ssl_sign_encoded, 'timestamp' => @nonce}).to_json
+    		self.class.post('/' + convert_undercores_to_slashes, :body => @parameters.to_s, :headers => {'Accept-Charset' => 'UTF-8', 'Accept' => 'application/json','Content-Type' => 'application/json', 'apikey' => @apikey , 'signature' => ssl_sign_encoded, 'timestamp' => @nonce}).to_json
 			else
 				# No parameters
-				self.class.post('/' + convert_undercores_to_slashes, :headers => {'Content-Type' => 'application/json', 'apikey' => @apikey , 'signature' => ssl_sign_encoded, 'timestamp' => @nonce}).to_json
+				self.class.post('/' + convert_undercores_to_slashes, :headers => {'Accept-Charset' => 'UTF-8', 'Accept' => 'application/json', 'Content-Type' => 'application/json', 'apikey' => @apikey , 'signature' => ssl_sign_encoded, 'timestamp' => @nonce}).to_json
 			end
 		end
   end
