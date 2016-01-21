@@ -27,7 +27,7 @@ class BTCMarkets
     end
     @nonce = (Time.now.to_f * 1000).to_i.to_s # generate a new one each time
     if @parameters != ''
-      to_sign = '/' + convert_undercores_to_slashes + "\n" + @nonce + "\n" + @parameters.to_s + "\n"
+      to_sign = '/' + convert_undercores_to_slashes + "\n" + @nonce + "\n" + @parameters.to_s
     else
       to_sign = '/' + convert_undercores_to_slashes + "\n" + @nonce + "\n"
     end
