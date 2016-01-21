@@ -1,4 +1,6 @@
 # BTC Markets Ruby Gem
+[![Gem Version](https://badge.fury.io/rb/nl-btcmarkets.svg)](https://badge.fury.io/rb/nl-btcmarkets)
+
 ## About / Why
 Decided its time to create a ruby interface for the BTCMarkets.net API.
 
