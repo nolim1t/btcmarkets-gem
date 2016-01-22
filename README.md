@@ -38,9 +38,9 @@ The following environment variables need to be set up
 require 'nl-btcmarkets'
 
 b = BTCMarkets.new
-puts b.market_BTC_AUD_tick # Get the spot quote
-puts b.market_BTC_AUD_orderbook # Get orderbook
-puts b.account_balance # Get account balance
+puts b.get_market_BTC_AUD_tick # Get the spot quote
+puts b.get_market_BTC_AUD_orderbook # Get orderbook
+puts b.get_account_balance # Get account balance
 ```
 
 #### Get Account Balance if not 0
@@ -48,7 +48,7 @@ puts b.account_balance # Get account balance
 require 'nl-btcmarkets'
 require 'json'
 b = BTCMarkets.new
-JSON.parse(b.account_balance).each{|bal|
+JSON.parse(b.get_account_balance).each{|bal|
   if bal['balance'] > 0 then
     if bal['currency'] == 'AUD' or bal['currency'] == 'USD'
       puts "Balance: #{bal['currency']}$#{(bal['balance'].to_f / 100000000).to_s} / Trading Balance: #{bal['currency']}$#{(bal['pendingFunds'].to_f / 100000000).to_s}"
