@@ -41,6 +41,7 @@ b = BTCMarkets.new
 puts b.get_market_BTC_AUD_tick # Get the spot quote
 puts b.get_market_BTC_AUD_orderbook # Get orderbook
 puts b.get_account_balance # Get account balance
+puts b.post_order_open( {"currency":"AUD","instrument":"BTC","limit":10,"since":0})
 ```
 
 #### Get Account Balance if not 0
